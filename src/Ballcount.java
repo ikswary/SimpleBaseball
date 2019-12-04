@@ -21,10 +21,11 @@ public class Ballcount{
                                     + hometeam.teamName + " defenses\n");
             homeTeamHitter = homescore.startInning(hometeam, homeTeamHitter);
         }
-        System.out.println("The game is over");
+        System.out.println("The game is over\n");
         System.out.println(hometeam.teamName + " VS "
                 + awayTeam.teamName);
         System.out.println(homescore.score + " : " + awayscore.score);
+        System.out.println("THANK YOU");
     }
 
     int startInning(TeamInfo team, int nextHitter){
@@ -38,7 +39,7 @@ public class Ballcount{
 
         while (this.outCount != 3) {
             System.out.println("#" + nextHitter + " " + team.hitter[nextHitter-1].name);
-            callBall();
+            callBall(team.hitter[nextHitter-1].hitRatio);
             scoreBoard = this.strike + "S " + this.ball + "B " + this.outCount + "O\n";
             System.out.println(scoreBoard);
             nextHitter++;
@@ -48,10 +49,27 @@ public class Ballcount{
         }
         return nextHitter;
     }
-    void callBall(){
-        int call=(int) (Math.random() * 1000) % 4 + 1;
+    void callBall(double ratio){
+        int call;
+        ratio *= 1000;
+        int hit = (int) ratio;
+        int out = hit + 100;
+        int strike = out + (1000 - out)/2;
+
+        int randomNum = (int) ((Math.random() * 1000));
+        if (randomNum < hit ){
+            call = 3; // 안타
+        } else if (randomNum < out){
+            call = 4; // 아웃
+        } else if (randomNum < strike){
+            call = 1; // 스트라이크
+        } else {
+            call = 2; // 볼
+        }
         this.addBallcount(call);
     }
+
+
 
     void addBallcount(int call){
         final int strikecall = 1;

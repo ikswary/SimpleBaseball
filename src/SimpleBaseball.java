@@ -17,8 +17,8 @@ public  class SimpleBaseball {
         exampleTeam1.inputTeamName("exampleTeamname1");
         exampleTeam2.inputTeamName("exampleTeamname2");
 
+
         /*
-          테스트 팀 설정
         for (int i = 0; i < 9; i++){
             int x= (int) (Math.random()*1000);
             exampleTeam1.inputTeamMember(i, Integer.toString(i*10), (double) x / 1000);
@@ -26,9 +26,10 @@ public  class SimpleBaseball {
             exampleTeam2.inputTeamMember(i, Integer.toString(i*10), (double) x / 1000);
         }
 
+
         baseballTeams.add(exampleTeam1);
         baseballTeams.add(exampleTeam2);
-         */
+        */
 
 
         while (true) {
@@ -36,7 +37,7 @@ public  class SimpleBaseball {
             System.out.println("1. input data");
             System.out.println("2. print data");
             System.out.println("3. play game");
-            initInput = sc.nextInt();
+
             sc.nextLine();                     //nextInt 입력시 버퍼에 남은 enter로 인한 오작동 방지
             if (initInput == 1) {
                 baseballTeams.add(new TeamInfo());
@@ -73,6 +74,8 @@ public  class SimpleBaseball {
                 sc.nextLine();
                 Ballcount.startSixInning(baseballTeams.get(hometeam - 1),
                         baseballTeams.get(awayteam - 1));
+            } else {
+                System.out.println("Unexpected input");
             }
         }
     }
