@@ -20,7 +20,7 @@ public class Ballcount{
         }
     }
     void callBall(){
-        int call=(int)(Math.random() * 1000) % 4 + 1;
+        int call=(int) (Math.random() * 1000) % 4 + 1;
         this.addBallcount(call);
     }
 
@@ -29,23 +29,23 @@ public class Ballcount{
         int ballcall = 2;
         int hitcall = 3;
         int outcall = 4;
-        if(call == strikecall){
+        if (call == strikecall){
             this.strike++;
             System.out.println("Call Strike");
         }
 
-        if(call == ballcall){
+        if (call == ballcall){
             this.ball++;
             System.out.println("Call Ball");
         }
 
-        if(call == hitcall || this.ball == 4){
+        if (call == hitcall || this.ball == 4){
             this.hitCount++;
             clearBallcount();
             System.out.println("Hit. Next hitter is in the batter box");
         }
 
-        if(call == outcall || this.strike == 3){
+        if (call == outcall || this.strike == 3){
             this.outCount++;
             clearBallcount();
             System.out.println("Out. Next hitter is in the batter box");

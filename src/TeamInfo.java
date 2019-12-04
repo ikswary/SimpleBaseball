@@ -24,7 +24,7 @@ public class TeamInfo{
     }
 
     public void printTeamData(){
-        System.out.println("Team " + this.teamName + "players data" );
+        System.out.println("Team " + this.teamName + "player's data" );
         for (int i = 0; i<9; i++){
             System.out.println("Num" + i + " " + this.hitter[i].name + ", " + this.hitter[i].hitRatio);
         }
