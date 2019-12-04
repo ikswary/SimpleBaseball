@@ -4,7 +4,7 @@ public class Ballcount{
     private int outCount;
     public int hitCount;
 
-    void startGame() {
+    void startGame(){
         String scoreBoard;
         this.ball = 0;
         this.strike = 0;
