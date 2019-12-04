@@ -12,9 +12,6 @@ public  class SimpleBaseball {
         Scanner sc = new Scanner(System.in);
         ArrayList<TeamInfo> baseballTeams = new ArrayList<TeamInfo>();
 
-        TeamInfo exampleTeam1 = new TeamInfo();
-        TeamInfo exampleTeam2 = new TeamInfo();
-
         while (true) {
             System.out.println("\nSimpleBaseball game");
             System.out.println("1. input data");

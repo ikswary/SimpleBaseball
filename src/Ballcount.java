@@ -30,10 +30,8 @@ public class Ballcount{
 
     int startInning(TeamInfo team, int nextHitter){
         String scoreBoard;
-        double hitRatio;
         this.ball = 0;
         this.strike = 0;
-        //this.hitCount = 0;
         this.outCount = 0;
         this.leftOnBase = 0;
 
