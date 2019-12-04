@@ -18,7 +18,7 @@ public class ScannerTest {
             team1.inputTeamMember(i, name, ratio);
         }
         team1.printTeamData();
-        sc.close()
+        sc.close();
     }
 }
 
