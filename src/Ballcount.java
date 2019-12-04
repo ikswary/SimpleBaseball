@@ -2,22 +2,51 @@ public class Ballcount{
     private int strike;
     private int ball;
     private int outCount;
-    public int hitCount;
+    private int leftOnBase;
+    private int score;
 
-    void startGame(){
+    static void startSixInning(TeamInfo hometeam, TeamInfo awayTeam){
+        int homeTeamHitter = 1;
+        int awayTeamHitter = 1;
+
+        Ballcount homescore = new Ballcount();
+        Ballcount awayscore = new Ballcount();
+        System.out.println("\n" + hometeam.teamName +
+                                " VS " + awayTeam.teamName + " starts now\n");
+        for (int i = 1; i <= 6; i++){
+            System.out.println("TOP of the " + i + " Inning "
+                                    + awayTeam.teamName + " attacks\n");
+            awayTeamHitter = awayscore.startInning(awayTeam, awayTeamHitter);
+            System.out.println("Bottom of the " + i + " Inning "
+                                    + hometeam.teamName + " defenses\n");
+            homeTeamHitter = homescore.startInning(hometeam, homeTeamHitter);
+        }
+        System.out.println("The game is over");
+        System.out.println(hometeam.teamName + " VS "
+                + awayTeam.teamName);
+        System.out.println(homescore.score + " : " + awayscore.score);
+    }
+
+    int startInning(TeamInfo team, int nextHitter){
         String scoreBoard;
+        double hitRatio;
         this.ball = 0;
         this.strike = 0;
-        this.hitCount = 0;
+        //this.hitCount = 0;
         this.outCount = 0;
+        this.leftOnBase = 0;
 
-        System.out.println("Starting simpleBaseball game");
-        System.out.println("first hitter is in the batter box\n");
         while (this.outCount != 3) {
+            System.out.println("#" + nextHitter + " " + team.hitter[nextHitter-1].name);
             callBall();
             scoreBoard = this.strike + "S " + this.ball + "B " + this.outCount + "O\n";
             System.out.println(scoreBoard);
+            nextHitter++;
+            if (nextHitter == 10){
+                nextHitter -= 9;
+            }
         }
+        return nextHitter;
     }
     void callBall(){
         int call=(int) (Math.random() * 1000) % 4 + 1;
@@ -25,10 +54,10 @@ public class Ballcount{
     }
 
     void addBallcount(int call){
-        int strikecall = 1;
-        int ballcall = 2;
-        int hitcall = 3;
-        int outcall = 4;
+        final int strikecall = 1;
+        final int ballcall = 2;
+        final int hitcall = 3;
+        final int outcall = 4;
         if (call == strikecall){
             this.strike++;
             System.out.println("Call Strike");
@@ -40,15 +69,18 @@ public class Ballcount{
         }
 
         if (call == hitcall || this.ball == 4){
-            this.hitCount++;
+            this.leftOnBase++;
             clearBallcount();
-            System.out.println("Hit. Next hitter is in the batter box");
+            if (leftOnBase >= 4){
+                this.score++;
+            }
+            System.out.println("Hit");
         }
 
         if (call == outcall || this.strike == 3){
             this.outCount++;
             clearBallcount();
-            System.out.println("Out. Next hitter is in the batter box");
+            System.out.println("Out");
         }
     }
 
